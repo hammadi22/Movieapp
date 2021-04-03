@@ -3,12 +3,17 @@ import React, { useState } from 'react';
 import MyNavbar from './Component/MyNavBar/MyNavBar';
 import MovieList from "./Component/MovieList/MovieList";
 import AddMovie from "./Component/AddMovie/AddMovie";
-
+import { BrowserRouter, Route } from "react-router-dom";
+import Switch  from "react-bootstrap/esm/Switch";
+import About from "./Component/About"
+import { Link, useParams } from "react-router-dom";
+import BackHome from "./BackHome"
 
 function App() {
   const [movies, setMovies] = useState([
 
     {
+      id: 1,
       title: "Titanic",
       description:
         "Seventeen-year-old Rose hails from an aristocratic family and is set to be married. When she boards the Titanic, she meets Jack Dawson, an artist, and falls in love with him.",
@@ -17,6 +22,7 @@ function App() {
       rate: 5,  
     },
     {
+      id: 2,
       title: "The Shawshank Redemption",
       description:
         "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
@@ -25,6 +31,7 @@ function App() {
         rate: 4,
     },
     {
+      id: 3,
       title: "The Godfather",
       description:
         "An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.",
@@ -33,6 +40,7 @@ function App() {
         rate: 4,  
     },
     {
+      id: 4,
       title: "The Dark Knight",
       description:
         "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
@@ -41,6 +49,7 @@ function App() {
         rate: 3,  
     },
     {
+      id: 5,
       title: "12 Angry Men",
       description:
         "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.",
@@ -49,6 +58,7 @@ function App() {
         rate: 4,  
     },
     {
+      id: 6,
       title: "Schindler's List",
       description:
         "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
@@ -57,6 +67,7 @@ function App() {
         rate: 4,  
     },
     {
+      id: 7,
       title: "Pulp Fiction",
       description:
         "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
@@ -64,6 +75,7 @@ function App() {
       rate: 4,
     },
     {
+      id: 8,
       title: "The Lord of the Rings: The Return of the King",
       description:
         "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
@@ -90,17 +102,43 @@ function App() {
   };
 
   return (
+    <BrowserRouter>
+    <Switch>
     <div className="App">
     <MyNavbar getSearchRate={getSearchRate} getSearchTitle={getSearchTitle} />
     <div className="addMovieBtn">
+      <Route exact path = "/">
       <AddMovie getNewMovie={getNewMovie} />
+      </Route>
     </div>
+    <div className = "MovieList">
+      <Route exact path = "/">
     <MovieList
       movies={movies}
       searchRate={searchRate}
       searchTitle={searchTitle}
     />
+    </Route>
+    </div>
   </div>
+ <Route 
+     path="/about/:userId"
+     render={(props) => <About {...props} />}
+ /> 
+   <Route path="/*">
+                        <h1
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "15% ",
+                            }}
+                        >
+                            {" "}
+                            <Link to="/">  Home Page</Link>
+                        </h1>
+                        </Route>
+  </Switch>
+  </BrowserRouter>
   );
 }
 
