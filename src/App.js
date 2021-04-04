@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Switch  from "react-bootstrap/esm/Switch";
 import About from "./Component/About"
 import { Link, useParams } from "react-router-dom";
-import BackHome from "./BackHome"
+
 
 function App() {
   const [movies, setMovies] = useState([
@@ -125,18 +125,7 @@ function App() {
      path="/about/:userId"
      render={(props) => <About {...props} />}
  /> 
-   <Route path="/*">
-                        <h1
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                margin: "15% ",
-                            }}
-                        >
-                            {" "}
-                            <Link to="/">  Home Page</Link>
-                        </h1>
-                        </Route>
+   
   </Switch>
   </BrowserRouter>
   );

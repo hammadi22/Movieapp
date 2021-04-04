@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Container, Jumbotron, Row } from "reactstrap";
 import { list } from "../Component/Trailer/Trailer";
 import ReactPlayer from "react-player";
+import { Link, Route } from "react-router-dom";
 
 function About(props) {
     const { userId } = useParams();
@@ -35,6 +36,18 @@ function About(props) {
                             {user.description},
                             {/* access to the nested object element  with es11 style user?.address?.street   => value of street */}
                         </p>
+                        <Route path="/*">
+                        <h1
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "15% ",
+                            }}
+                        >
+                            {" "}
+                            <Link to="/">  Home Page</Link>
+                        </h1>
+                        </Route>
                     </Row>
                 </Jumbotron>
             </Container>
